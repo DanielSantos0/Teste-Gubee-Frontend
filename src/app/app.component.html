@@ -1,0 +1,75 @@
+<nav class="navbar navbar-light bg-light">
+  <div class="container-fluid">
+    <span class="navbar-brand mb-0 h1">Navbar</span>
+  </div>
+</nav>
+
+<div class="container">
+
+  <div class="filter-container">
+    <div class="row">
+      <div class="col-6">
+        <label for="inputFiltroTecnologia" class="form-label">Tecnologia</label>
+        <input type="text" class="form-control" id="inputFiltroTecnologia" aria-describedby="filtroTecnologiaHelp" [(ngModel)]="filtro.tecnologias">
+        <div id="filtroTecnologiaHelp" class="form-text">Digite o nome das tecnologias que deseja filtrar separado por vírgulas</div>
+      </div>
+      <div class="col-6">
+        <label for="inputFiltroMercadoAlvo" class="form-label">Mercado Alvo</label>
+        <input type="text" class="form-control" id="inputFiltroMercadoAlvo" aria-describedby="filtroMercadoAlvoHelp" [(ngModel)]="filtro.mercadosAlvos">
+        <div id="filtroMercadoAlvoHelp" class="form-text">Digite o nome dos mercados alvos que deseja filtrar separado por vírgulas</div>
+      </div>
+    </div>
+  
+    <div class="row">
+      <div class="col-12">
+        <button type="button" class="btn btn-primary btn-clean-filter" (click)="limparFiltros()">Limpar Filtros</button>
+        <button type="button" class="btn btn-primary btn-filter" (click)="filtrar()">Filtrar</button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-12">
+      
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Nome do Produto</th>
+            <th scope="col">Descrição</th>
+            <th scope="col">Tecnologias</th>
+            <th scope="col">Mercados Alvos</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let produto of produtos">
+            <th scope="row">{{produto.productName}}</th>
+            <td>{{produto.description}}</td>
+            <td>
+              <button type="button" class="btn btn-success" (click)="abrirModal(content, 'Tecnologias', produto.stack)">Ver Mais</button>
+            </td>
+            <td>
+              <button type="button" class="btn btn-success" (click)="abrirModal(content, 'Mercados Alvos', produto.targetMarket)">Ver Mais</button>
+            </td>
+          </tr>
+        </tbody>
+  
+    </table>
+
+    </div>
+  </div>
+</div>
+
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{tituloModal}}</h4>
+  </div>
+  <div class="modal-body">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item" *ngFor="let item of listaModal">{{item}}</li>
+    </ul>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="modal.close('Save click')">Fechar</button>
+  </div>
+</ng-template>

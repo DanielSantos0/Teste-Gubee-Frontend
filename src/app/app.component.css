@@ -1,0 +1,13 @@
+.btn-filter {
+    float: right;
+}
+
+.btn-clean-filter {
+    float: right;
+    margin-left: 10px;;
+}
+
+.filter-container {
+    margin-bottom: 25px;
+    margin-top: 25px;
+}
